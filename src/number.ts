@@ -1,4 +1,4 @@
-import { INVALID_NUMBER } from "./constants";
+import { INVALID_NUMBER } from "./messages";
 import { invalidResult, Result, validResult } from "./result";
 
 export interface NumberOptions {

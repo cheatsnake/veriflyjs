@@ -1,8 +1,3 @@
-import {
-    INVALID_CAPITAL_LETTERS_AMOUNT,
-    INVALID_NUMBERS_AMOUNT,
-    INVALID_SPECIAL_SYMBOLS_AMOUNT,
-} from "./constants";
 import { caplLetterPresset, numberPresset, specSymbolPresset } from "./pressets";
 import { Result, validResult } from "./result";
 import { checkPattern, checkString, StringOptions, PressetOptions } from "./string";
@@ -17,6 +12,32 @@ export interface PasswordOptions extends StringOptions {
 }
 
 export const checkPassword = (value: string, opt: PasswordOptions): Result => {
+    if (!opt.pressets) opt.pressets = [];
+
+    if (opt.capitalLetters) {
+        const presset: PressetOptions = {
+            ...caplLetterPresset,
+            minAmount: opt.capitalLetters,
+        };
+        opt.pressets.push(presset);
+    }
+
+    if (opt.numbers) {
+        const presset: PressetOptions = {
+            ...numberPresset,
+            minAmount: opt.numbers,
+        };
+        opt.pressets.push(presset);
+    }
+
+    if (opt.specialSymbols) {
+        const presset: PressetOptions = {
+            ...specSymbolPresset,
+            minAmount: opt.specialSymbols,
+        };
+        opt.pressets.push(presset);
+    }
+
     let result = checkString(value, {
         minLength: opt.minLength,
         maxLength: opt.maxLength,
@@ -25,34 +46,5 @@ export const checkPassword = (value: string, opt: PasswordOptions): Result => {
 
     if (!result.isValid) return result;
 
-    result = checkPattern(
-        value,
-        caplLetterPresset.patterns[0],
-        opt.capitalLetters,
-        INVALID_CAPITAL_LETTERS_AMOUNT(Number(opt.capitalLetters))
-    );
-
-    if (!result.isValid) return result;
-
-    result = checkPattern(
-        value,
-        numberPresset.patterns[0],
-        opt.numbers,
-        INVALID_NUMBERS_AMOUNT(Number(opt.numbers))
-    );
-
-    if (!result.isValid) return result;
-
-    result = checkPattern(
-        value,
-        specSymbolPresset.patterns[0],
-        opt.specialSymbols,
-        INVALID_SPECIAL_SYMBOLS_AMOUNT(Number(opt.specialSymbols))
-    );
-
-    if (!result.isValid) return result;
-
     return validResult;
 };
-
-console.log(checkPassword("wgigjweijg", { pressets: [caplLetterPresset] }));

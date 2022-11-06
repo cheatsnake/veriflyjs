@@ -1,12 +1,12 @@
-import { INVALID_STRING_LENGTH } from "./constants";
-import { INVALID_SUBSTRING_AMOUNT } from "./constants";
+import { INVALID_STRING_LENGTH, MessageArguments } from "./messages";
+import { FAILED_PATTERN_VALIDATION } from "./messages";
 import { invalidResult, Result, validResult } from "./result";
 
 export interface PressetOptions {
     patterns: string[] | RegExp[];
     minAmount?: number;
     maxAmount?: number;
-    // TODO: add an option for custom error messages
+    errorMsg?: (args: MessageArguments) => string;
 }
 
 export interface StringOptions {
@@ -14,6 +14,27 @@ export interface StringOptions {
     maxLength?: number;
     pressets?: PressetOptions[];
 }
+// Если есть min и max - выводим ошибку паттерн должен быть не менее Min раз и не более Max раз
+// Eckb есть min и нету max - паттерн должен быть не менее Min Раз
+// Если есть max и нету min - паттерн может отсутствовать или встречаться не более Max раз
+// Если есть max = 0 - паттерн не должне встрачаться
+export const checkPresset = (value: string, opt: PressetOptions): Result => {
+    for (const pattern of opt.patterns) {
+        const amount = value.split(pattern).length - 1;
+        const errMsg = opt.errorMsg
+            ? opt.errorMsg({ pattern, min: opt.minAmount, max: opt.maxAmount })
+            : FAILED_PATTERN_VALIDATION({ pattern, min: opt.minAmount, max: opt.maxAmount });
+
+        if (
+            (typeof opt.maxAmount == "number" && amount > opt.maxAmount) ||
+            (typeof opt.minAmount == "number" && amount < opt.minAmount)
+        ) {
+            return invalidResult(errMsg);
+        }
+    }
+
+    return validResult;
+};
 
 export const checkString = (value: string, opt: StringOptions): Result => {
     if (
@@ -27,21 +48,6 @@ export const checkString = (value: string, opt: StringOptions): Result => {
         for (const container of opt.pressets) {
             const result = checkPresset(value, container);
             if (!result.isValid) return result;
-        }
-    }
-
-    return validResult;
-};
-
-export const checkPresset = (value: string, opt: PressetOptions): Result => {
-    for (const substr of opt.patterns) {
-        const amount = value.split(substr).length - 1;
-
-        if (
-            (opt.minAmount && amount < opt.minAmount) ||
-            (opt.maxAmount && amount > opt.maxAmount)
-        ) {
-            return invalidResult(INVALID_SUBSTRING_AMOUNT(substr, opt.minAmount, opt.maxAmount));
         }
     }
 
