@@ -14,16 +14,17 @@ export interface StringOptions {
     maxLength?: number;
     pressets?: PressetOptions[];
 }
-// Если есть min и max - выводим ошибку паттерн должен быть не менее Min раз и не более Max раз
-// Eckb есть min и нету max - паттерн должен быть не менее Min Раз
-// Если есть max и нету min - паттерн может отсутствовать или встречаться не более Max раз
-// Если есть max = 0 - паттерн не должне встрачаться
+
 export const checkPresset = (value: string, opt: PressetOptions): Result => {
     for (const pattern of opt.patterns) {
         const amount = value.split(pattern).length - 1;
         const errMsg = opt.errorMsg
-            ? opt.errorMsg({ pattern, min: opt.minAmount, max: opt.maxAmount })
-            : FAILED_PATTERN_VALIDATION({ pattern, min: opt.minAmount, max: opt.maxAmount });
+            ? opt.errorMsg({ pattern, minAmount: opt.minAmount, maxAmount: opt.maxAmount })
+            : FAILED_PATTERN_VALIDATION({
+                  pattern,
+                  minAmount: opt.minAmount,
+                  maxAmount: opt.maxAmount,
+              });
 
         if (
             (typeof opt.maxAmount == "number" && amount > opt.maxAmount) ||

@@ -1,6 +1,7 @@
-import { caplLetterPresset, numberPresset, specSymbolPresset } from "./pressets";
+import { MessageArguments } from "./messages";
+import { capitalLetterPresset, numberPresset, specialSymbolPresset } from "./pressets";
 import { Result, validResult } from "./result";
-import { checkPattern, checkString, StringOptions, PressetOptions } from "./string";
+import { checkString, StringOptions } from "./string";
 
 export interface PasswordOptions extends StringOptions {
     // Amount of capital letters that password must have
@@ -15,27 +16,15 @@ export const checkPassword = (value: string, opt: PasswordOptions): Result => {
     if (!opt.pressets) opt.pressets = [];
 
     if (opt.capitalLetters) {
-        const presset: PressetOptions = {
-            ...caplLetterPresset,
-            minAmount: opt.capitalLetters,
-        };
-        opt.pressets.push(presset);
+        opt.pressets.push(capitalLetterPresset(opt.capitalLetters));
     }
 
     if (opt.numbers) {
-        const presset: PressetOptions = {
-            ...numberPresset,
-            minAmount: opt.numbers,
-        };
-        opt.pressets.push(presset);
+        opt.pressets.push(numberPresset(opt.numbers));
     }
 
     if (opt.specialSymbols) {
-        const presset: PressetOptions = {
-            ...specSymbolPresset,
-            minAmount: opt.specialSymbols,
-        };
-        opt.pressets.push(presset);
+        opt.pressets.push(specialSymbolPresset(opt.specialSymbols));
     }
 
     let result = checkString(value, {

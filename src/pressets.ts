@@ -5,20 +5,27 @@ import {
 } from "./messages";
 import { PressetOptions } from "./string";
 
-export const caplLetterPresset: PressetOptions = {
-    patterns: [/[A-Z]/g],
-    minAmount: 1,
-    errorMsg: INVALID_CAPITAL_LETTERS_AMOUNT,
+export const capitalLetterPresset = (minAmount = 1, maxAmount?: number): PressetOptions => {
+    return {
+        patterns: [/[A-Z]/g],
+        minAmount,
+        maxAmount,
+        errorMsg: () => INVALID_CAPITAL_LETTERS_AMOUNT({ minAmount, maxAmount }),
+    };
 };
 
-export const numberPresset: PressetOptions = {
-    patterns: [/\d/g],
-    minAmount: 1,
-    errorMsg: INVALID_NUMBERS_AMOUNT,
+export const numberPresset = (minAmount = 1, maxAmount?: number): PressetOptions => {
+    return {
+        patterns: [/\d/g],
+        minAmount,
+        errorMsg: () => INVALID_NUMBERS_AMOUNT({ minAmount, maxAmount }),
+    };
 };
 
-export const specSymbolPresset: PressetOptions = {
-    patterns: [/\W/g],
-    minAmount: 1,
-    errorMsg: INVALID_SPECIAL_SYMBOLS_AMOUNT,
+export const specialSymbolPresset = (minAmount = 1, maxAmount?: number): PressetOptions => {
+    return {
+        patterns: [/\W/g],
+        minAmount,
+        errorMsg: () => INVALID_SPECIAL_SYMBOLS_AMOUNT({ minAmount, maxAmount }),
+    };
 };
