@@ -1,4 +1,4 @@
-import { INVALID_NUMBER } from "../src/constants";
+import { INVALID_NUMBER } from "../src/messages";
 import verifly from "../src/index";
 
 describe("checkNumber()", () => {
