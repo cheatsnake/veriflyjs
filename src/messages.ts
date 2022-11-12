@@ -80,3 +80,11 @@ export const INVALID_STRING_LENGTH = (min?: number, max?: number) => {
 
     return `The length of the string must be no less than ${min} and no more than ${max}.`;
 };
+
+export const INVALID_EMAIL = () => {
+    return `The string is not a valid email address.`;
+};
+
+export const INVALID_EMAIL_DOMAIN = (domains: string[]) => {
+    return `The email address must contain one of the allowed domain names: ${domains.join(", ")}.`;
+};
