@@ -1,9 +1,13 @@
 {
     "name": "verifly",
     "version": "1.0.0",
-    "description": "Simple package for verifying credential data",
-    "main": "./lib/index.js",
+    "description": "Simple Node.js library for validation strings, passwords, emails etc.",
+    "main": "./dist/index.js",
     "types": "lib",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cheatsnake/veriflyjs.git"
+    },
     "scripts": {
         "build": "tsc -p .",
         "test": "jest --config jestconfig.json"
@@ -15,6 +19,10 @@
         "validate",
         "validator"
     ],
+    "bugs": {
+        "url": "https://github.com/cheatsnake/veriflyjs/issues"
+    },
+    "homepage": "https://github.com/cheatsnake/veriflyjs/is-even#readme",
     "devDependencies": {
         "@types/jest": "^29.2.2",
         "@types/node": "^18.11.9",
