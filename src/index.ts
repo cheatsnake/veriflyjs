@@ -1,9 +1,11 @@
+import { checkEmail } from "./email";
 import { checkNumber } from "./number";
 import { checkPassword } from "./password";
 import { checkString } from "./string";
 
-export default {
+export = {
     checkNumber: checkNumber,
     checkString: checkString,
     checkPassword: checkPassword,
+    checkEmail: checkEmail,
 };

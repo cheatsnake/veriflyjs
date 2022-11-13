@@ -7,7 +7,8 @@ export interface EmailOptions extends StringOptions {
     domains?: string[];
 }
 
-export const checkEmail = (email: string, opt: EmailOptions): Result => {
+export const checkEmail = (email: string, opt?: EmailOptions): Result => {
+    if (!opt) opt = {};
     if (!opt.pressets) opt.pressets = [];
     if (!opt.domains) opt.domains = [];
 
