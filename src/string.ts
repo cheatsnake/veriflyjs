@@ -54,20 +54,3 @@ export const checkString = (value: string, opt: StringOptions): Result => {
 
     return validResult;
 };
-
-export const checkPattern = (
-    value: string,
-    pattern: string | RegExp,
-    minAmount: number | undefined,
-    errMsg: string
-): Result => {
-    if (minAmount) {
-        const amount = value.split(pattern).length - 1;
-
-        if (amount < minAmount) {
-            return invalidResult(errMsg);
-        }
-    }
-
-    return validResult;
-};
