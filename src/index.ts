@@ -4,8 +4,8 @@ import { checkPassword } from "./password";
 import { checkString } from "./string";
 
 export = {
-    checkNumber: checkNumber,
-    checkString: checkString,
-    checkPassword: checkPassword,
-    checkEmail: checkEmail,
+    checkNumber,
+    checkString,
+    checkPassword,
+    checkEmail,
 };
