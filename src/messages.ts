@@ -88,3 +88,7 @@ export const INVALID_EMAIL = () => {
 export const INVALID_EMAIL_DOMAIN = (domains: string[]) => {
     return `The email address must contain one of the allowed domain names: ${domains.join(", ")}.`;
 };
+
+export const INVALID_EMAIL_WITH_BLOCKED_DOMAIN = (domains: string[]) => {
+    return `The email address must not contain the following domain names: ${domains.join(", ")}.`;
+};
