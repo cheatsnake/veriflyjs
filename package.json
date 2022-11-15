@@ -1,9 +1,9 @@
 {
     "name": "verifly",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "description": "Simple Node.js library for validation strings, passwords, emails etc.",
     "main": "./dist/index.js",
-    "types": "lib",
+    "types": "./dist",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/cheatsnake/veriflyjs.git"
