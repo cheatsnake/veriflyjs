@@ -4,9 +4,9 @@ import {
     INVALID_NUMBERS_AMOUNT,
     INVALID_SPECIAL_SYMBOLS_AMOUNT,
 } from "./messages";
-import { PressetOptions } from "./string";
+import { PresetOptions } from "./string";
 
-export const capitalLetterPresset = (minAmount = 1, maxAmount?: number): PressetOptions => {
+export const capitalLetterPreset = (minAmount = 1, maxAmount?: number): PresetOptions => {
     return {
         patterns: [/[A-Z]/g],
         minAmount,
@@ -15,7 +15,7 @@ export const capitalLetterPresset = (minAmount = 1, maxAmount?: number): Presset
     };
 };
 
-export const numberPresset = (minAmount = 1, maxAmount?: number): PressetOptions => {
+export const numberPreset = (minAmount = 1, maxAmount?: number): PresetOptions => {
     return {
         patterns: [/\d/g],
         minAmount,
@@ -23,7 +23,7 @@ export const numberPresset = (minAmount = 1, maxAmount?: number): PressetOptions
     };
 };
 
-export const specialSymbolPresset = (minAmount = 1, maxAmount?: number): PressetOptions => {
+export const specialSymbolPreset = (minAmount = 1, maxAmount?: number): PresetOptions => {
     return {
         patterns: [/\W/g],
         minAmount,
@@ -31,7 +31,7 @@ export const specialSymbolPresset = (minAmount = 1, maxAmount?: number): Presset
     };
 };
 
-export const emailPresset = (): PressetOptions => {
+export const emailPreset = (): PresetOptions => {
     return {
         patterns: [
             /(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/gm,

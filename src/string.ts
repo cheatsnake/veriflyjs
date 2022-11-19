@@ -2,7 +2,7 @@ import { INVALID_STRING_LENGTH, MessageArguments } from "./messages";
 import { FAILED_PATTERN_VALIDATION } from "./messages";
 import { invalidResult, Result, validResult } from "./result";
 
-export interface PressetOptions {
+export interface PresetOptions {
     patterns: string[] | RegExp[];
     minAmount?: number;
     maxAmount?: number;
@@ -12,10 +12,10 @@ export interface PressetOptions {
 export interface StringOptions {
     minLength?: number;
     maxLength?: number;
-    pressets?: PressetOptions[];
+    presets?: PresetOptions[];
 }
 
-export const checkPresset = (value: string, opt: PressetOptions): Result => {
+export const checkPreset = (value: string, opt: PresetOptions): Result => {
     for (const pattern of opt.patterns) {
         const amount = value.split(pattern).length - 1;
         const errMsg = opt.errorMsg
@@ -45,9 +45,9 @@ export const checkString = (value: string, opt: StringOptions): Result => {
         return invalidResult(INVALID_STRING_LENGTH(opt.minLength, opt.maxLength));
     }
 
-    if (opt.pressets) {
-        for (const container of opt.pressets) {
-            const result = checkPresset(value, container);
+    if (opt.presets) {
+        for (const container of opt.presets) {
+            const result = checkPreset(value, container);
             if (!result.isValid) return result;
         }
     }

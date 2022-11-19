@@ -1,12 +1,7 @@
 import { checkEmail } from "./email";
 import { checkNumber } from "./number";
 import { checkPassword } from "./password";
-import {
-    capitalLetterPresset,
-    emailPresset,
-    numberPresset,
-    specialSymbolPresset,
-} from "./pressets";
+import { capitalLetterPreset, emailPreset, numberPreset, specialSymbolPreset } from "./presets";
 import { checkString } from "./string";
 
 export = {
@@ -15,10 +10,10 @@ export = {
     checkPassword,
     checkEmail,
 
-    pressets: {
-        capitalLetterPresset,
-        numberPresset,
-        specialSymbolPresset,
-        emailPresset,
+    presets: {
+        capitalLetterPreset,
+        numberPreset,
+        specialSymbolPreset,
+        emailPreset,
     },
 };

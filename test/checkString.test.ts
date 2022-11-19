@@ -40,42 +40,42 @@ describe("checkString()", () => {
 
     test("valid string with specified string-pattern", () => {
         const result = verifly.checkString("testing", {
-            pressets: [{ patterns: ["test"], minAmount: 1, maxAmount: 2 }],
+            presets: [{ patterns: ["test"], minAmount: 1, maxAmount: 2 }],
         });
         expect(result).toStrictEqual(validResult);
     });
 
     test("valid string with specified string-pattern (max amount = 0)", () => {
         const result = verifly.checkString("testing", {
-            pressets: [{ patterns: ["hello"], maxAmount: 0 }],
+            presets: [{ patterns: ["hello"], maxAmount: 0 }],
         });
         expect(result).toStrictEqual(validResult);
     });
 
     test("valid string with specified string-patterns", () => {
         const result = verifly.checkString("hellotestworld", {
-            pressets: [{ patterns: ["test", "hello", "world"], minAmount: 1, maxAmount: 2 }],
+            presets: [{ patterns: ["test", "hello", "world"], minAmount: 1, maxAmount: 2 }],
         });
         expect(result).toStrictEqual(validResult);
     });
 
     test("valid string with specified regex-pattern", () => {
         const result = verifly.checkString("testing", {
-            pressets: [{ patterns: [/test/g], minAmount: 1, maxAmount: 2 }],
+            presets: [{ patterns: [/test/g], minAmount: 1, maxAmount: 2 }],
         });
         expect(result).toStrictEqual(validResult);
     });
 
     test("valid string with specified regex-pattern (max amount = 0)", () => {
         const result = verifly.checkString("testing", {
-            pressets: [{ patterns: [/hello/g], maxAmount: 0 }],
+            presets: [{ patterns: [/hello/g], maxAmount: 0 }],
         });
         expect(result).toStrictEqual(validResult);
     });
 
     test("valid string with specified regex-patterns", () => {
         const result = verifly.checkString("worldhellotest", {
-            pressets: [{ patterns: [/test/g, /hello/g, /world/g], minAmount: 1, maxAmount: 2 }],
+            presets: [{ patterns: [/test/g, /hello/g, /world/g], minAmount: 1, maxAmount: 2 }],
         });
         expect(result).toStrictEqual(validResult);
     });
@@ -85,7 +85,7 @@ describe("checkString()", () => {
         const minAmount = 1;
         const maxAmount = 2;
         const result = verifly.checkString("testing", {
-            pressets: [{ patterns: [pattern], minAmount, maxAmount }],
+            presets: [{ patterns: [pattern], minAmount, maxAmount }],
         });
 
         expect(result).toStrictEqual(
@@ -98,7 +98,7 @@ describe("checkString()", () => {
         const minAmount = 1;
         const maxAmount = 2;
         const result = verifly.checkString("testing", {
-            pressets: [{ patterns: [pattern], minAmount, maxAmount }],
+            presets: [{ patterns: [pattern], minAmount, maxAmount }],
         });
 
         expect(result).toStrictEqual(
@@ -109,7 +109,7 @@ describe("checkString()", () => {
     test("invalid string with specified pattern (custom error message)", () => {
         const customMsg = "something went wrong...";
         const result = verifly.checkString("testing", {
-            pressets: [
+            presets: [
                 { patterns: ["hello"], minAmount: 1, maxAmount: 2, errorMsg: () => customMsg },
             ],
         });

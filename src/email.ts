@@ -1,5 +1,5 @@
 import { INVALID_EMAIL_DOMAIN, INVALID_EMAIL_WITH_BLOCKED_DOMAIN } from "./messages";
-import { emailPresset } from "./pressets";
+import { emailPreset } from "./presets";
 import { invalidResult, Result, validResult } from "./result";
 import { checkString, StringOptions } from "./string";
 
@@ -18,16 +18,16 @@ export interface EmailOptions extends StringOptions {
 
 export const checkEmail = (email: string, opt?: EmailOptions): Result => {
     if (!opt) opt = {};
-    if (!opt.pressets) opt.pressets = [];
+    if (!opt.presets) opt.presets = [];
     if (!opt.allowedDomains) opt.allowedDomains = [];
     if (!opt.blockedDomains) opt.blockedDomains = [];
 
-    opt.pressets.push(emailPresset());
+    opt.presets.push(emailPreset());
 
     let result = checkString(email, {
         minLength: opt.minLength,
         maxLength: opt.maxLength,
-        pressets: opt.pressets,
+        presets: opt.presets,
     });
 
     if (!result.isValid) return result;

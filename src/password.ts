@@ -1,5 +1,5 @@
 import { MessageArguments } from "./messages";
-import { capitalLetterPresset, numberPresset, specialSymbolPresset } from "./pressets";
+import { capitalLetterPreset, numberPreset, specialSymbolPreset } from "./presets";
 import { Result, validResult } from "./result";
 import { checkString, StringOptions } from "./string";
 
@@ -13,24 +13,24 @@ export interface PasswordOptions extends StringOptions {
 }
 
 export const checkPassword = (value: string, opt: PasswordOptions): Result => {
-    if (!opt.pressets) opt.pressets = [];
+    if (!opt.presets) opt.presets = [];
 
     if (opt.capitalLetters) {
-        opt.pressets.push(capitalLetterPresset(opt.capitalLetters));
+        opt.presets.push(capitalLetterPreset(opt.capitalLetters));
     }
 
     if (opt.numbers) {
-        opt.pressets.push(numberPresset(opt.numbers));
+        opt.presets.push(numberPreset(opt.numbers));
     }
 
     if (opt.specialSymbols) {
-        opt.pressets.push(specialSymbolPresset(opt.specialSymbols));
+        opt.presets.push(specialSymbolPreset(opt.specialSymbols));
     }
 
     let result = checkString(value, {
         minLength: opt.minLength,
         maxLength: opt.maxLength,
-        pressets: opt.pressets,
+        presets: opt.presets,
     });
 
     if (!result.isValid) return result;
