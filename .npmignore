@@ -1,3 +1,5 @@
 jest.config.json
 coverage
 test
+tsconfig.json
+src
